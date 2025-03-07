@@ -4,9 +4,9 @@ from model.entity.admin import Admin
 from model.tools.logging import Logger
 
 
-def save(user_name,password):
+def save(username,password):
     try:
-        admin = Admin(user_name,password)
+        admin = Admin(username,password)
 
         admin_da = DataAccess(Admin)
         admin_da.save(admin)
@@ -17,9 +17,9 @@ def save(user_name,password):
         return False, f"{e}"
 
 
-def edit(id,user_name,password):
+def edit(id,username,password):
     try:
-        member = Admin(user_name,password)
+        member = Admin(username,password)
         member.id = id
 
         admin = DataAccess(Admin)
@@ -45,18 +45,18 @@ def remove_by_id(id):
 
 def find_all():
     try:
-        user_da = DataAccess()
-        user_list = user_da.find_all()
-        Logger.info(f"User FindALL")
-        return True, user_list
+        admin_da = DataAccess()
+        admin_list = admin_da.find_all()
+        Logger.info(f"Admin FindALL")
+        return True, admin_list
     except Exception as e:
         Logger.error(f"{e} - FindALL")
         return False, f"{e}"
 
 def find_by_id(id):
     try:
-        user_da = DataAccess(Admin)
-        user = user_da.find_by_id(id)
+        admin_da = DataAccess(Admin)
+        admin = admin_da.find_by_id(id)
         if user:
             Logger.info(f"Admin FindById {id}")
             return True, user

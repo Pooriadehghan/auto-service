@@ -6,7 +6,7 @@ class Acceptance(Base):
 
     _id = Column("id", Integer, primary_key=True, autoincrement=True)
     _car_name = Column("car_name", String(30))
-    _car_model = Column("car_model", String(30))
+    _car_model = Column("car_model", String(15))
     _car_year = Column("car_year", String(4))
     _color = Column("color", String(30))
     _plate = Column("plate", String(30))

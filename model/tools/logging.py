@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
+
 import logging
 import sys
 
 class Logger:
-    logging.basicConfig(
+    logging.baseicConfig(
         level=logging.INFO,
-        format="%(asctime)s - %(levelname)5s - %(message)s",
+        format='%(asctime)s %(name)s %(levelname)5s %(message)s',
         encoding="UTF-8",
         handlers=[
-            # logging.FileHandler("logging.log"),
-            logging.StreamHandler(sys.stdout)
+
+            logging.streamhandler(sys.stdout),
         ]
     )
     @classmethod
@@ -20,5 +21,3 @@ class Logger:
     @classmethod
     def error(cls, message):
         logging.error(message)
-
-

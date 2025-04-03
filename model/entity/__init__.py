@@ -4,4 +4,6 @@ from sqlalchemy.orm import relationship
 from model.entity.base import Base
 
 from model.entity.acceptance import Acceptance
-
+from model.entity.periodic_service import PeriodicService
+from model.entity.repairs import Repair
+from model.tools import *

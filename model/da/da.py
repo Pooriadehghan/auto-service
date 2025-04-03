@@ -1,6 +1,8 @@
 from model.da import *
 
-connection_string = "mysql+pymysql://root:P09378922886d@localhost:3306/auto_service"
+#connection_string = "mysql+pymysql://root:P09378922886d@localhost:3306/auto_service"
+connection_string = "mysql+pymysql://root:root123@localhost:3306/auto_service"
+
 if not database_exists(connection_string):
     create_database(connection_string)
 

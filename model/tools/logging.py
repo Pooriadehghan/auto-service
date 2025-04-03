@@ -4,13 +4,13 @@ import logging
 import sys
 
 class Logger:
-    logging.baseicConfig(
+    logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s %(name)s %(levelname)5s %(message)s',
         encoding="UTF-8",
         handlers=[
 
-            logging.streamhandler(sys.stdout),
+            logging.StreamHandler(sys.stdout),
         ]
     )
     @classmethod

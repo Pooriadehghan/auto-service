@@ -1,5 +1,6 @@
 import re
 from datetime import datetime, time
+import matplotlib.colors as mcolors
 
 
 def name_validator(name, message):
@@ -37,31 +38,32 @@ def age_validator(age, message):
         raise ValueError(message)
 
 
-#def price_validator(price, message):
+# def price_validator(price, message):
 #    if type(price) == str and 0 <= int(price):
 #        return price
 #    else:
 #        raise ValueError(message)
 
-def label_validator(label,message):
-    if type(label)== str and re.match(r"^[a-zA-Z\s.\-_\d]{3,30}$",label):
+def label_validator(label, message):
+    if type(label) == str and re.match(r"^[a-zA-Z\s.\-_\d]{3,30}$", label):
         return label
     else:
         raise ValueError(message)
 
-def price_validator(price,message):
-    if type(price) == int or type(price)==float and price > 0:
+
+def price_validator(price, message):
+    if type(price) == int or type(price) == float and price > 0:
         return price
     else:
         raise ValueError(message)
 
-def quantity_validator(quantity,message):
-    if type(quantity)==int and quantity > 0:
+
+def quantity_validator(quantity, message):
+    if type(quantity) == int and quantity > 0:
         return quantity
 
     else:
-        raise  ValueError(message)
-
+        raise ValueError(message)
 
 
 def national_id_validator(national_id, message):
@@ -99,20 +101,20 @@ def amount_validator(amount):
         raise ValueError("Invalid amount !!!")
 
 
-def time_validator(time):
+def time_validator(time, message):
     try:
         if type(time) == datetime:
             return datetime.strptime(time, "%H:%M ").time()
     except:
-        raise ValueError("Invalid Time !!!")
+        raise ValueError(message)
 
 
-def date_validator(date):
+def date_validator(date, message):
     try:
         if type(date) == str:
             return datetime.strptime(date, "%Y-%m-%d").date()
     except:
-        raise ValueError("Invalid date !!!")
+        raise ValueError(message)
 
 
 def title_pay_validator(title_pay, message):
@@ -186,7 +188,7 @@ def vin_validator(vin, message):
 
 
 def kilometer_validator(kilometer, message):
-    if type(kilometer) == str and 0 <= int(kilometer):
+    if type(kilometer) == int and 0 <= int(kilometer):
         return kilometer
     else:
         raise ValueError(message)
@@ -199,3 +201,8 @@ def type_service_validator(type_service, message):
         raise ValueError(message)
 
 
+def color_validator(color, message):
+    if type(color) == str and color in mcolors:
+        return color
+    else:
+        raise ValueError(message)

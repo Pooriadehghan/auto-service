@@ -86,7 +86,7 @@ def find_by_id(id):
 def find_by_owner(owner):
     try:
         acceptance_da = DataAccess(Acceptance)
-        acceptance = acceptance_da.find_by_owner(Acceptance._owner == owner)
+        acceptance = acceptance_da.find_by_owner(Acceptance.owner == owner)
         if acceptance:
             Logger.info(f"Acceptance FindByFamily {owner}")
             return True, acceptance

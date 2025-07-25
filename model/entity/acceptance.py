@@ -1,4 +1,5 @@
 from model.entity import *
+from model.tools.validation import *
 
 
 class Acceptance(Base):
@@ -46,7 +47,7 @@ class Acceptance(Base):
 
     @car_name.setter
     def car_name(self, value):
-        self._car_name = value
+        self._car_name = name_validator(value, "invalid car name!!!")
 
     @property
     def car_model(self):
@@ -54,7 +55,7 @@ class Acceptance(Base):
 
     @car_model.setter
     def car_model(self, value):
-        self._car_model = value
+        self._car_model = car_model_validator(value, "invalid car model!!!")
 
     @property
     def car_year(self):
@@ -62,7 +63,7 @@ class Acceptance(Base):
 
     @car_year.setter
     def car_year(self, value):
-        self._car_year = value
+        self._car_year = car_year_validator(value, "invalid car year!!!")
 
     @property
     def color(self):
@@ -70,7 +71,7 @@ class Acceptance(Base):
 
     @color.setter
     def color(self, value):
-        self._color = value
+        self._color = color_validator(value, "this color is not true!!!")
 
     @property
     def plate(self):
@@ -78,7 +79,7 @@ class Acceptance(Base):
 
     @plate.setter
     def plate(self, value):
-        self._plate = value
+        self._plate = plate_validator(value, "invalid plate!!!")
 
     @property
     def vin(self):
@@ -86,7 +87,7 @@ class Acceptance(Base):
 
     @vin.setter
     def vin(self, value):
-        self._vin = value
+        self._vin = vin_validator(value, "invalid  car vin!!!")
 
     @property
     def owner(self):
@@ -94,7 +95,7 @@ class Acceptance(Base):
 
     @owner.setter
     def owner(self, value):
-        self._owner = value
+        self._owner = name_validator(value, "invalid name owner!!!")
 
     @property
     def owner_phone(self):
@@ -102,7 +103,7 @@ class Acceptance(Base):
 
     @owner_phone.setter
     def owner_phone(self, value):
-        self._owner_phone = value
+        self._owner_phone = phone_validator(value, "invalid phone number owner!!!")
 
     @property
     def kilometers(self):
@@ -110,7 +111,7 @@ class Acceptance(Base):
 
     @kilometers.setter
     def kilometers(self, value):
-        self._kilometers = value
+        self._kilometers = kilometer_validator(value, "invalid kilometers!!!")
 
     @property
     def type_service(self):
@@ -118,8 +119,7 @@ class Acceptance(Base):
 
     @type_service.setter
     def type_service(self, value):
-        self._type_service = value
-
+        self._type_service = type_service_validator(value, "invalid type service!!!")
 
     @property
     def date_service(self):
@@ -127,7 +127,5 @@ class Acceptance(Base):
 
     @date_service.setter
     def date_service(self, value):
-        self._date_service = value
+        self._date_service = date_validator(value,"invalid date service!!!")
 
-
-        

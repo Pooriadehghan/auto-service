@@ -1,25 +1,13 @@
-from sqlalchemy import Column, Integer, String
-from model.entity.base import Base
-from model.tools.validation import *
-
-class User(Base):
-    __tablename__ = 'user'
-
-    _id = Column("id", Integer, primary_key=True, autoincrement=True)
-    _name = Column("name", String(30))
-    _family = Column("family", String(30))
-    _phone_number = Column("phone_number", Integer)
-    _address = Column("address", String(30))
-    _department = Column("department", String(30))
-
+class User:
     def __init__(self, name, family, phone_number, address, department):
-        self.id = None
-        self.name = name
-        self.family = family
-        self.phone_number = phone_number
-        self.address = address
-        self.department = department
+        self._id = None
+        self._name = name
+        self._family = family
+        self._phone_number = phone_number
+        self._address = address
+        self._department = department
 
+    # --- id ---
     @property
     def id(self):
         return self._id
@@ -28,42 +16,50 @@ class User(Base):
     def id(self, value):
         self._id = value
 
+    # --- name ---
     @property
     def name(self):
         return self._name
 
     @name.setter
     def name(self, value):
-        self._name = name_validator(value,"Invalid name !!!")
+        self._name = value
 
+    # --- family ---
     @property
-    def famiy(self):
+    def family(self):
         return self._family
 
-    @famiy.setter
-    def famiy(self, value):
-        self._family = family_validator(value,"Invalid family !!!")
+    @family.setter
+    def family(self, value):
+        self._family = value
 
+    # --- phone_number ---
     @property
     def phone_number(self):
         return self._phone_number
 
     @phone_number.setter
     def phone_number(self, value):
-        self._phone_number = phone_number_validator(value,"Invalid phone_number !!!")
+        self._phone_number = value
 
+    # --- address ---
     @property
     def address(self):
         return self._address
 
     @address.setter
     def address(self, value):
-        self._address = address_validator(value,"Invalid address !!!")
+        self._address = value
 
+    # --- department ---
     @property
     def department(self):
         return self._department
 
     @department.setter
     def department(self, value):
-        self._department = name_validator(value,"Invalid department !!!")
+        self._department = value
+
+    def __str__(self):
+        return f"User(id={self._id}, name={self._name}, family={self._family})"

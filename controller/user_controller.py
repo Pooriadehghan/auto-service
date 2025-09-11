@@ -3,6 +3,7 @@ from model.entity.user import User
 from model.tools.logging import Logger
 
 
+
 class UserController:
 
     def save(name, family, phone_number, address, department):

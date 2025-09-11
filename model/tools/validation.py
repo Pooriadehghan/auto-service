@@ -38,11 +38,11 @@ def age_validator(age, message):
         raise ValueError(message)
 
 
-# def price_validator(price, message):
-#    if type(price) == str and 0 <= int(price):
-#        return price
-#    else:
-#        raise ValueError(message)
+def price_validator(price, message):
+    if type(price) == str and 0 <= int(price):
+        return price
+    else:
+        raise ValueError(message)
 
 def label_validator(label, message):
     if type(label) == str and re.match(r"^[a-zA-Z\s.\-_\d]{3,30}$", label):

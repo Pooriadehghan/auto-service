@@ -1,14 +1,15 @@
-from sqlalchemy import Column,Integer,String,Date
+from sqlalchemy import Column, Integer, String, Date
 from base import Base
+
 
 class Invoice(Base):
     __tablename__ = 'invoice'
 
     _id = Column("id", Integer, primary_key=True, autoincrement=True)
-    _date= Column("date", Date, nullable=False)
-    _time= Column("time", Date, nullable=False)
-    _cost= Column("cost", String(30), nullable=False)
-    _pay_type= Column("pay_type", String(30), nullable=False)
+    _date = Column("date", Date, nullable=False)
+    _time = Column("time", Date, nullable=False)
+    _cost = Column("cost", String(30), nullable=False)
+    _pay_type = Column("pay_type", String(30), nullable=False)
 
     def __init__(self, id, date, time, cost, pay_type):
         self.id = id
@@ -31,7 +32,7 @@ class Invoice(Base):
 
     @date.setter
     def date(self, value):
-        self._date =value
+        self._date = value
 
     @property
     def time(self):

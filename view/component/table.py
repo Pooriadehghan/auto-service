@@ -26,7 +26,7 @@ class Table:
 
         if data_list:
             for data in data_list:
-                self.table.insert("", END, values=tuple(data.to_tuple()))
+                self.table.insert("", END, values=tuple(data))
 
     def select_table(self, event):
         data = self.table.item(self.table.focus())["values"]

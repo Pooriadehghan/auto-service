@@ -1,12 +1,11 @@
 from controller import *
 
 
-def save(car_name, car_model, car_year, color, plate, vin, owner, owner_phone, kilometers, type_service,
-         date_service):
+def save_acceptance(car_name, car_model, car_year, color, plate, vin, owner, owner_phone, kilometers,
+                    date_service):  # type_service
     try:
         acceptance = Acceptance(car_name, car_model, car_year, color, plate, vin, owner, owner_phone, kilometers,
-                                type_service,
-                                date_service)
+                                date_service)  # type_service
 
         acceptance_da = DataAccess(Acceptance)
         acceptance_da.save(acceptance)
@@ -17,12 +16,11 @@ def save(car_name, car_model, car_year, color, plate, vin, owner, owner_phone, k
         return False, f"{e}"
 
 
-def edit(id, car_name, car_model, car_year, color, plate, vin, owner, owner_phone, kilometers, type_service,
-         date_service):
+def edit_acceptance(id, car_name, car_model, car_year, color, plate, vin, owner, owner_phone, kilometers,
+                    date_service):  # type_service
     try:
         acceptance = Acceptance(car_name, car_model, car_year, color, plate, vin, owner, owner_phone, kilometers,
-                                type_service,
-                                date_service)
+                                date_service)  # type_service
         acceptance.id = id
 
         acceptance_da = DataAccess(Acceptance)
@@ -94,4 +92,13 @@ def find_by_owner(owner):
             raise ValueError("No Acceptance Found")
     except Exception as e:
         Logger.error(f"{e} - FindByFamily {owner}")
+        return False, f"{e}"
+
+
+def find_all_acceptance():
+    try:
+        acceptance_da = DataAccess(Acceptance)
+        all_acceptance = acceptance_da.find_all()
+        return all_acceptance
+    except Exception as e:
         return False, f"{e}"

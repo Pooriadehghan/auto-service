@@ -7,13 +7,13 @@ class Admin(Base):
     __tablename__ = 'admin'
 
     _id = Column("id", Integer, primary_key=True, autoincrement=True)
-    _username=Column("username",String(30))
-    _password=Column("password",String(30))
+    _username = Column("username", String(30))
+    _password = Column("password", String(30))
 
-    def __init__(self,username,password):
-        self.id=None
-        self.username=username
-        self.password=password
+    def __init__(self, username, password):
+        self.id = None
+        self.username = username
+        self.password = password
 
     @property
     def id(self):
@@ -29,7 +29,7 @@ class Admin(Base):
 
     @username.setter
     def username(self, value):
-        self._user_name = username_validator(value,"Invalid username !!!")
+        self._user_name = username_validator(value, "Invalid username !!!")
 
     @property
     def password(self):
@@ -37,4 +37,4 @@ class Admin(Base):
 
     @password.setter
     def password(self, value):
-        self._password = password_validator(value,"Invalid password !!!")
+        self._password = password_validator(value, "Invalid password !!!")

@@ -1,12 +1,14 @@
 from tkinter import *
 import tkinter.messagebox as msg
-from view.component import *
-from controller.admin_controller import AdminController
+from view.component.label_and_entry import LabelAndEntry
+from view.component.table import Table
+from controller.admin_controller import *
 
 
 class AdminView:
+
     def save_click(self):
-        status, data = add(self.username.variable.get(), self.password.variable.get())
+        status, data = save(self.username.variable.get(), self.password.variable.get())
         if status:
             msg.showinfo("Save", f"Admin Saved\n{data}")
             self.reset_form()
@@ -22,7 +24,7 @@ class AdminView:
             msg.showerror("Edit Error", f"Error\n{data}")
 
     def remove_click(self):
-        status, data = remove(self.username.variable.get())
+        status, data = remove_by_id(self.username.variable.get())
         if status:
             msg.showinfo("Remove", f"Admin Removed\n{data}")
             self.reset_form()
@@ -39,10 +41,10 @@ class AdminView:
         status, admin_list = find_all()
         self.table.refresh_table(admin_list)
 
-    def __init__(self):
+    def __init__(self, title, geometry):
         self.win = Tk()
-        self.win.title("Admin Info")
-        self.win.geometry("500x250")
+        self.win.title(title)
+        self.win.geometry(geometry)
 
         self.username = LabelAndEntry(self.win, "Username", 20, 20)
         self.password = LabelAndEntry(self.win, "Password", 20, 60)

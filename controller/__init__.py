@@ -4,5 +4,5 @@ from model.tools.logging import Logger
 from model.entity.repairs import Repair
 from model.entity import PeriodicService
 from model.entity import Repair
-from model.entity.carwash import Carwash
+from model.entity.carwash import CarWash
 from model.entity.invoice import Invoice

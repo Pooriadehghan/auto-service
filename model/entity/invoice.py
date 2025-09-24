@@ -1,5 +1,5 @@
-from sqlalchemy import Column, Integer, String, Date
-from base import Base
+from model.entity import *
+from model.tools.validation import *
 
 
 class Invoice(Base):

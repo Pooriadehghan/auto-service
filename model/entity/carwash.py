@@ -1,8 +1,8 @@
-from sqlalchemy import Column, Integer, String
-from base import Base
+from model.entity import *
+from model.tools.validation import *
 
 
-class Carwash(Base):
+class CarWash(Base):
     __tablename__ = "Car_wash"
     _id = Column("id", Integer, primary_key=True, autoincrement=True)
     _type_wash = Column("wash_type", String(30), nullable=False)

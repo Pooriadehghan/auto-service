@@ -1,11 +1,12 @@
 from controller import *
+from model.entity.carwash import CarWash
 
 
 def save(id, type_wash, price):
     try:
-        carwash = Carwash(id, type_wash, price)
+        carwash = CarWash(id, type_wash, price)
 
-        carwash_da = DataAccess(Carwash)
+        carwash_da = DataAccess(CarWash)
         carwash_da.save(carwash)
         Logger.info(f"Carwash{carwash}Saved")
         return True, carwash
@@ -16,9 +17,9 @@ def save(id, type_wash, price):
 
 def edit(id, type_wash, price):
     try:
-        carwash = Carwash(id, type_wash, price)
+        carwash = CarWash(id, type_wash, price)
         carwash.id = id
-        carwash_da = DataAccess(Carwash)
+        carwash_da = DataAccess(CarWash)
         carwash_da.edit(carwash)
         Logger.info(f"Carwash{carwash}Edited")
         return True, carwash
@@ -29,7 +30,7 @@ def edit(id, type_wash, price):
 
 def remove_by_id(id):
     try:
-        carwash_da = DataAccess(Carwash)
+        carwash_da = DataAccess(CarWash)
         carwash = carwash_da.remove_by_id(id)
 
         Logger.info(f"Carwash {carwash} Removed")
@@ -41,7 +42,7 @@ def remove_by_id(id):
 
 def find_all():
     try:
-        carwash_da = DataAccess(Carwash)
+        carwash_da = DataAccess(CarWash)
         carwash_list = carwash_da.find_all()
         Logger.info(f"Carwash FindALL")
         return True, carwash_list
@@ -52,7 +53,7 @@ def find_all():
 
 def find_by_id(id):
     try:
-        carwash_da = DataAccess(Carwash)
+        carwash_da = DataAccess(CarWash)
         carwash = carwash_da.find_by_id(id)
         if carwash:
             Logger.info(f"Carwash FindById {id}")
@@ -66,7 +67,7 @@ def find_by_id(id):
 
 def find_all_carwash():
     try:
-        carwash_da = DataAccess(Carwash)
+        carwash_da = DataAccess(CarWash)
         all_carwash = carwash_da.find_all()
         return all_carwash
     except Exception as e:

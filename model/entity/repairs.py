@@ -1,24 +1,23 @@
-
-
 from model.entity import *
 from model.tools.validation import *
 
-class Repair(Base):
-    __tablename__='repairs'
-    _id=Column("id",Integer,primary_key=True,autoincrement=True)
-    _name_part=Column("name_part",String(30))
-    _label=Column("label",String(30))
-    _price=Column("price",Float)
-    _quantity=Column("quantity",Integer)
-    _salary=Column("salary",Float)
 
-    def __init__(self,name_part,label,price,quantity,salary):
-        self.id=None
-        self.name_part=name_part
-        self.label=label
-        self.price=price
-        self.quantity=quantity
-        self.salary=salary
+class Repair(Base):
+    __tablename__ = 'repairs'
+    _id = Column("id", Integer, primary_key=True, autoincrement=True)
+    _name_part = Column("name_part", String(30))
+    _label = Column("label", String(30))
+    _price = Column("price", Float)
+    _quantity = Column("quantity", Integer)
+    _salary = Column("salary", Float)
+
+    def __init__(self, name_part, label, price, quantity, salary):
+        self.id = None
+        self.name_part = name_part
+        self.label = label
+        self.price = price
+        self.quantity = quantity
+        self.salary = salary
 
     @property
     def id(self):
@@ -26,7 +25,7 @@ class Repair(Base):
 
     @id.setter
     def id(self, value):
-        self._id=value
+        self._id = value
 
     @property
     def name_part(self):
@@ -34,7 +33,7 @@ class Repair(Base):
 
     @name_part.setter
     def name_part(self, value):
-        self._name_part=name_validator(value,"Invalid Name Part !!!")
+        self._name_part = name_validator(value, "Invalid Name Part !!!")
 
     @property
     def label(self):
@@ -42,8 +41,7 @@ class Repair(Base):
 
     @label.setter
     def label(self, value):
-        self._label=label_validator(value,"Invalid Label !!!")
-
+        self._label = label_validator(value, "Invalid Label !!!")
 
     @property
     def price(self):
@@ -51,7 +49,7 @@ class Repair(Base):
 
     @price.setter
     def price(self, value):
-        self._price=price_validator(value,"Invalid Price !!!")
+        self._price = price_validator(value, "Invalid Price !!!")
 
     @property
     def quantity(self):
@@ -59,7 +57,7 @@ class Repair(Base):
 
     @quantity.setter
     def quantity(self, value):
-        self._quantity=quantity_validator(value,"Invalid Quantity !!!")
+        self._quantity = quantity_validator(value, "Invalid Quantity !!!")
 
     @property
     def salary(self):
@@ -67,5 +65,4 @@ class Repair(Base):
 
     @salary.setter
     def salary(self, value):
-        self._salary=price_validator(value,"Invalid Salary !!!")
-
+        self._salary = price_validator(value, "Invalid Salary !!!")

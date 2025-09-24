@@ -1,4 +1,10 @@
-class User:
+from model.entity import *
+from model.tools.validation import *
+
+
+class User(base):
+    __tablename__="user"
+
     def __init__(self, name, family, phone_number, address, department):
         self._id = None
         self._name = name

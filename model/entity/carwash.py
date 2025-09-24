@@ -3,7 +3,7 @@ from base import Base
 
 
 class Carwash(Base):
-    __tablename__ = 'Carwash'
+    __tablename__ = "Car_wash"
     _id = Column("id", Integer, primary_key=True, autoincrement=True)
     _type_wash = Column("wash_type", String(30), nullable=False)
     _price = Column("price", Integer, nullable=False)

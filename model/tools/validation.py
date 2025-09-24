@@ -44,6 +44,7 @@ def price_validator(price, message):
     else:
         raise ValueError(message)
 
+
 def label_validator(label, message):
     if type(label) == str and re.match(r"^[a-zA-Z\s.\-_\d]{3,30}$", label):
         return label

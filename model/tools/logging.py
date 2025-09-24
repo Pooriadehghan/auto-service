@@ -3,6 +3,7 @@
 import logging
 import sys
 
+
 class Logger:
     logging.basicConfig(
         level=logging.INFO,
@@ -13,10 +14,10 @@ class Logger:
             logging.StreamHandler(sys.stdout),
         ]
     )
+
     @classmethod
     def info(cls, message):
         logging.info(message)
-
 
     @classmethod
     def error(cls, message):

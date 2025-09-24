@@ -1,4 +1,6 @@
 from model.da import *
+from model.entity import *
+
 
 connection_string = "mysql+pymysql://root:P09378922886d@localhost:3306/auto_service"
 # connection_string = "mysql+pymysql://root:root123@localhost:3306/auto_service"

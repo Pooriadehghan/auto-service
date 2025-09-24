@@ -2,11 +2,12 @@ from tkinter import *
 import tkinter.messagebox as msg
 from view.component import *
 from controller.user_controller import *
-
+from view.component.table import *
+from view.component.label_and_entry import *
 
 class UserView:
     def save_click(self):
-        status, data = add(
+        status, data = save(
             self.role.variable.get(),
             self.name.variable.get(),
             self.family.variable.get(),
@@ -37,7 +38,7 @@ class UserView:
             msg.showerror("Edit Error", f"Error\n{data}")
 
     def remove_click(self):
-        status, data = delete(self.id.variable.get())
+        status, data = remove_by_id(self.id.variable.get())
         if status:
             msg.showinfo("Remove", f"User Removed\n{data}")
             self.reset_form()

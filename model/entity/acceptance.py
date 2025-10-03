@@ -15,7 +15,7 @@ class Acceptance(Base):
     _owner = Column("owner", String(30))
     _owner_phone = Column("owner_phone", String(30))
     _kilometers = Column("kilometers", Integer)
-    _type_service = Column("type_service", String(30))  # رادیو باتن یا چک باتن قرار میدهیم
+    _type_service = Column("type_service", String(30))
     _date_service = Column("date_service", Date)
 
     def __init__(self, car_name, car_model, car_year, color, plate, vin, owner, owner_phone, kilometers, type_service,

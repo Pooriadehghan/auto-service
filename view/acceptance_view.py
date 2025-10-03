@@ -11,6 +11,9 @@ from model.tools.validation import *
 
 class AcceptanceView:
 
+    def destroy_window(self):
+        self.win.destroy()
+
     def select_table(self, selected_acceptance):
         self.id.variable.set(selected_acceptance[0])
         self.car_name.variable.set(selected_acceptance[1])
@@ -22,6 +25,8 @@ class AcceptanceView:
         self.owner.variable.set(selected_acceptance[7])
         self.owner_phone.variable.set(selected_acceptance[8])
         self.kilometers.variable.set(selected_acceptance[9])
+        self.type_service.variable.set(selected_acceptance[10])
+        self.date_service.variable.set(selected_acceptance[11])
 
     def reset_form(self):
         self.id.variable.set(0)
@@ -34,12 +39,18 @@ class AcceptanceView:
         self.owner.variable.set("")
         self.owner_phone.variable.set("")
         self.kilometers.variable.set(0)
+        self.type_service.variable.set("")
+        self.date_service.variable.set("")
+        acceptance_list = find_all_acceptance()
+        self.table.refresh_table(acceptance_list)
 
     def save_click(self):
-        data = save_acceptance(self.car_name.variable.get(), self.car_name.variable.get(), self.car_year.variable.get(),
+        data = save_acceptance(self.car_name.variable.get(), self.car_model.variable.get(),
+                               self.car_year.variable.get(),
                                self.color.variable.get(), self.plate.variable.get(), self.vin.variable.get(),
                                self.owner.variable.get(), self.owner_phone.variable.get(),
-                               self.kilometers.variable.get())
+                               self.kilometers.variable.get(),
+                               self.type_service.variable.get(), self.date_service.variable.get())
         if data[0] == True:
             msg.showinfo("save", f"Acceptance Saved")
             self.reset_form()
@@ -47,10 +58,12 @@ class AcceptanceView:
             msg.showerror("Save Error", f"Error\n{data[1]}")
 
     def edit_click(self):
-        data = edit_acceptance(self.car_name.variable.get(), self.car_name.variable.get(), self.car_year.variable.get(),
+        data = edit_acceptance(self.id.variable.get(), self.car_name.variable.get(), self.car_model.variable.get(),
+                               self.car_year.variable.get(),
                                self.color.variable.get(), self.plate.variable.get(), self.vin.variable.get(),
                                self.owner.variable.get(), self.owner_phone.variable.get(),
-                               self.kilometers.variable.get())
+                               self.kilometers.variable.get(),
+                               self.type_service.variable.get(), self.date_service.variable.get())
         if data[0] == True:
             msg.showinfo("Edit", f"acceptance Edited")
             self.reset_form()
@@ -58,10 +71,13 @@ class AcceptanceView:
             msg.showerror("Edit Error", f"Error\n{data[1]}")
 
     def remove_click(self):
-        data = remove_by_id(self.car_name.variable.get(), self.car_name.variable.get(), self.car_year.variable.get(),
-                            self.color.variable.get(), self.plate.variable.get(), self.vin.variable.get(),
-                            self.owner.variable.get(), self.owner_phone.variable.get(),
-                            self.kilometers.variable.get())
+        data = remove_acceptance_by_id(self.id.variable.get(), self.car_name.variable.get(),
+                                       self.car_model.variable.get(),
+                                       self.car_year.variable.get(),
+                                       self.color.variable.get(), self.plate.variable.get(), self.vin.variable.get(),
+                                       self.owner.variable.get(), self.owner_phone.variable.get(),
+                                       self.kilometers.variable.get(),
+                                       self.type_service.variable.get(), self.date_service.variable.get())
         if data[0] == True:
             msg.showinfo("Remove", f"Acceptance Removed")
             self.reset_form()
@@ -75,7 +91,8 @@ class AcceptanceView:
         acceptance_list = find_all_acceptance()
         self.table.refresh_table(acceptance_list)
 
-    def __init__(self, title, geometry, ):
+    def __init__(self, title, geometry, open_repairs=None, open_periodic_service=None, open_pdr=None,
+                 open_carwash=None):
         self.win = Tk()
         self.win.geometry(geometry)
         self.win.title(title)
@@ -90,10 +107,12 @@ class AcceptanceView:
         self.owner = LabelAndEntry(self.win, "Owner", 20, 290, data_type=str)
         self.owner_phone = LabelAndEntry(self.win, "Owner Phone", 20, 320, data_type=str)
         self.kilometers = LabelAndEntry(self.win, "Kilometers", 20, 350, data_type=int)
-        self.date_service = LabelAndEntry(self.win, "date", 20, 380, data_type=str)
+        self.type_service = LabelAndEntry(self.win, "type_service", 20, 380, data_type=str)
+        self.date_service = LabelAndEntry(self.win, "date", 20, 410, data_type=str)
         self.table = Table(self.win,
                            ["ID", "Car name", "Car model", "Car year", "Color", "Plate", "Vin", "Owner", "Owner Phone",
-                            "Kilometers", "date"], [10, 70, 70, 70, 70, 70, 70, 70, 80, 70, 70], 260, 80,
+                            "Kilometers", "type service", "date"], [10, 70, 70, 70, 70, 70, 70, 70, 80, 70, 70, 70],
+                           260, 80,
                            self.select_table)
 
         Button(self.win, text="New", width=7, command=self.reset_form).place(x=260, y=40)
@@ -101,6 +120,18 @@ class AcceptanceView:
         Button(self.win, text="Edit", width=7, command=self.edit_click).place(x=400, y=40)
         Button(self.win, text="Remove", width=7, command=self.remove_click).place(x=470, y=40)
         Button(self.win, text="Set today", width=7, command=self.set_today).place(x=260, y=380)
-        self.repairs = Button(self.win, text="Repairs", width=7, command=lambda: repairs(self))
-        self.repairs.place()
+        Button(self.win, text="Show Acceptance", width=13, command=self.show_acceptance).place(x=330, y=380)
+        self.open_repairs = Button(self.win, text="Open Repairs", width=10, command=lambda: open_repairs(self))
+        self.open_repairs.place(x=260, y=340)
+        self.open_periodic_service = Button(self.win, text="Open Periodic Service", width=17,
+                                            command=lambda: open_periodic_service(self))
+        self.open_periodic_service.place(x=350, y=340)
+        self.open_pdr = Button(self.win, text="Open Pdr", width=10, command=lambda: open_pdr(self))
+        self.open_pdr.place(x=490, y=340)
+        self.open_carwash = Button(self.win, text="Open_Car wash", width=12, command=lambda: open_carwash(self))
+        self.open_carwash.place(x=580, y=340)
+
         self.win.mainloop()
+
+
+ui = AcceptanceView("Acceptance View", "1200x480")

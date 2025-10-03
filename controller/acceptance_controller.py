@@ -2,10 +2,10 @@ from controller import *
 
 
 def save_acceptance(car_name, car_model, car_year, color, plate, vin, owner, owner_phone, kilometers,
-                    date_service):  # type_service
+                    type_service, date_service):
     try:
         acceptance = Acceptance(car_name, car_model, car_year, color, plate, vin, owner, owner_phone, kilometers,
-                                date_service)  # type_service
+                                type_service, date_service)
 
         acceptance_da = DataAccess(Acceptance)
         acceptance_da.save(acceptance)
@@ -17,10 +17,10 @@ def save_acceptance(car_name, car_model, car_year, color, plate, vin, owner, own
 
 
 def edit_acceptance(id, car_name, car_model, car_year, color, plate, vin, owner, owner_phone, kilometers,
-                    date_service):  # type_service
+                    type_service, date_service):
     try:
         acceptance = Acceptance(car_name, car_model, car_year, color, plate, vin, owner, owner_phone, kilometers,
-                                date_service)  # type_service
+                                type_service, date_service)
         acceptance.id = id
 
         acceptance_da = DataAccess(Acceptance)
@@ -32,13 +32,16 @@ def edit_acceptance(id, car_name, car_model, car_year, color, plate, vin, owner,
         return False, f"{e}"
 
 
-def remove_by_id(id):
+def remove_acceptance_by_id(id, car_name, car_model, car_year, color, plate, vin, owner, owner_phone, kilometers,
+                            type_service,
+                            date_service):
     try:
-        acceptance_da = DataAccess(Acceptance)
-        acceptance = acceptance_da.remove_by_id(id)
-
-        Logger.info(f"Acceptance {acceptance} Removed")
-        return True, acceptance
+      acceptance=Acceptance(id, car_name, car_model, car_year, color, plate, vin, owner, owner_phone, kilometers,
+                            type_service,
+                            date_service)
+      acceptance.id=id
+      acceptance_da = DataAccess(Acceptance)
+      acceptance_da.remove(acceptance)
     except Exception as e:
         Logger.error(f"{e} - Not Removed")
         return False, f"{e}"

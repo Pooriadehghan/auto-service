@@ -27,7 +27,7 @@ def edit_invoice(id, date, time, cost, pay_type):
         return False, f"{e}"
 
 
-def remove_by_id(id):
+def remove_invoice_by_id(id):
     try:
         invoice_da = DataAccess(Invoice)
         invoice = invoice_da.remove_by_id(id)
@@ -37,7 +37,6 @@ def remove_by_id(id):
     except Exception as e:
         Logger.error(f"{e} - Not Removed")
         return False, f"{e}"
-
 
 def find_all():
     try:

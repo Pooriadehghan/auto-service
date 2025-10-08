@@ -3,15 +3,19 @@ from model.tools.validation import *
 
 
 class CarWash(Base):
-    __tablename__ = "Car_wash"
+    __tablename__ = "Car_Wash"
     _id = Column("id", Integer, primary_key=True, autoincrement=True)
-    _type_wash = Column("wash_type", String(30), nullable=False)
+    _Car_id = Column("car_id", Integer, ForeignKey("acceptance.id"))
     _price = Column("price", Integer, nullable=False)
+    _type_wash = Column("type_wash", String(30), nullable=False)
 
-    def __init__(self, id, wash_type, price):
-        self._id = id
-        self._type_wash = wash_type
+    acceptance = relationship("Acceptance")
+
+    def __init__(self, car_id, price, type_wash):
+        self.id = None
+        self._Car_id = car_id
         self._price = price
+        self._type_wash = type_wash
 
     @property
     def id(self):
@@ -22,12 +26,16 @@ class CarWash(Base):
         self._id = value
 
     @property
-    def type_wash(self):
-        return self._type_wash
+    def car_id(self):
+        return self._Car_id
 
-    @type_wash.setter
-    def type_wash(self, value):
-        self._type_wash = value
+    @car_id.setter
+    def car_id(self, value):
+
+        if type(value) == int:
+            self._Car_id = value
+        else:
+            raise ValueError("Car ID must be an integer")
 
     @property
     def price(self):
@@ -35,4 +43,12 @@ class CarWash(Base):
 
     @price.setter
     def price(self, value):
-        self._price = value
+        self._price = price_validator(value, "Price must be a positive number")
+
+    @property
+    def type_wash(self):
+        return self._type_wash
+
+    @type_wash.setter
+    def type_wash(self, value):
+        self._type_wash = value

@@ -60,3 +60,5 @@ class DataAccess:
     def find_by(self, find_statement):
         entity = session.query(self.class_name).filter(find_statement).all()
         return entity
+
+

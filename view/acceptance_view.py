@@ -7,6 +7,7 @@ from view.component.label_and_entry import LabelAndEntry
 from controller.acceptance_controller import *
 import tkinter.messagebox as msg
 from model.tools.validation import *
+from view.carwash_view import *
 
 
 class AcceptanceView:
@@ -91,8 +92,9 @@ class AcceptanceView:
         acceptance_list = find_all_acceptance()
         self.table.refresh_table(acceptance_list)
 
-    def __init__(self, title, geometry, open_repairs=None, open_periodic_service=None, open_pdr=None,
-                 open_carwash=None):
+    def __init__(self, title, geometry, open_repairs_command=None, open_periodic_service_command=None,
+                 open_pdr_command=None,
+                 open_Car_wash_command=None):
         self.win = Tk()
         self.win.geometry(geometry)
         self.win.title(title)
@@ -121,17 +123,23 @@ class AcceptanceView:
         Button(self.win, text="Remove", width=7, command=self.remove_click).place(x=470, y=40)
         Button(self.win, text="Set today", width=7, command=self.set_today).place(x=260, y=380)
         Button(self.win, text="Show Acceptance", width=13, command=self.show_acceptance).place(x=330, y=380)
-        self.open_repairs = Button(self.win, text="Open Repairs", width=10, command=lambda: open_repairs(self))
+        self.open_repairs = Button(self.win, text="Open Repairs", width=10, command=lambda: open_repairs_command(self))
         self.open_repairs.place(x=260, y=340)
         self.open_periodic_service = Button(self.win, text="Open Periodic Service", width=17,
-                                            command=lambda: open_periodic_service(self))
+                                            command=lambda: open_periodic_service_command(self))
         self.open_periodic_service.place(x=350, y=340)
-        self.open_pdr = Button(self.win, text="Open Pdr", width=10, command=lambda: open_pdr(self))
+        self.open_pdr = Button(self.win, text="Open Pdr", width=10, command=lambda: open_pdr_command(self))
         self.open_pdr.place(x=490, y=340)
-        self.open_carwash = Button(self.win, text="Open_Car wash", width=12, command=lambda: open_carwash(self))
-        self.open_carwash.place(x=580, y=340)
+        self.open_Car_wash = Button(self.win, text="Open_Car wash", width=12,
+                                    command=lambda: open_Car_wash_command(self))
+        self.open_Car_wash.place(x=580, y=340)
 
         self.win.mainloop()
 
 
 ui = AcceptanceView("Acceptance View", "1200x480")
+
+
+def open_car_wash(current_view):
+    current_view.destroy_window()
+    CarWashView("CarWash View", "600x400")

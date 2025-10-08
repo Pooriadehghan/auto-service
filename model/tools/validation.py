@@ -38,11 +38,11 @@ def age_validator(age, message):
         raise ValueError(message)
 
 
-def price_validator(price, message):
-    if type(price) == str and 0 <= int(price):
-        return price
-    else:
-        raise ValueError(message)
+# def price_validator(price, message):
+#     if type(price) == str and 0 <= int(price):
+#         return price
+#     else:
+#         raise ValueError(message)
 
 
 def label_validator(label, message):
@@ -52,11 +52,22 @@ def label_validator(label, message):
         raise ValueError(message)
 
 
-def price_validator(price, message):
-    if type(price) == int or type(price) == float and price > 0:
-        return price
-    else:
+def price_validator(price, message="Invalid price"):
+    # بررسی None یا رشته خالی
+    if price is None or str(price).strip() == "":
         raise ValueError(message)
+
+    try:
+        # تبدیل به float
+        value = float(str(price).strip())
+    except (ValueError, TypeError):
+        raise ValueError(message)
+
+    # بررسی مثبت بودن (اگر صفر هم مجاز است: value >= 0)
+    if value < 0:
+        raise ValueError(message)
+
+    return value
 
 
 def quantity_validator(quantity, message):
@@ -207,3 +218,10 @@ def color_validator(color, message):
         return color
     else:
         raise ValueError(message)
+
+
+def id_validation(car_id, message):
+    if type(car_id) == int and 0 <= car_id:
+        return car_id
+    else:
+        return ValueError(message)

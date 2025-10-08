@@ -2,73 +2,61 @@ from controller import *
 from model.entity.carwash import CarWash
 
 
-def save(id, type_wash, price):
+def save_Carwash(car_id, price, type_wash):
     try:
-        carwash = CarWash(id, type_wash, price)
+        Carwash = CarWash(car_id, price, type_wash)
 
-        carwash_da = DataAccess(CarWash)
-        carwash_da.save(carwash)
-        Logger.info(f"Carwash{carwash}Saved")
-        return True, carwash
+        Carwash_da = DataAccess(CarWash)
+        Carwash_da.save(Carwash)
+        Logger.info(f"Car wash{Carwash}Saved")
+        return True, Carwash
     except Exception as e:
         Logger.error(f"{e} - Not Saved")
         return False, f"{e}"
 
 
-def edit(id, type_wash, price):
+def edit_Carwash(id, car_id, price, type_wash):
     try:
-        carwash = CarWash(id, type_wash, price)
-        carwash.id = id
-        carwash_da = DataAccess(CarWash)
-        carwash_da.edit(carwash)
-        Logger.info(f"Carwash{carwash}Edited")
-        return True, carwash
+        Carwash = CarWash(car_id, price, type_wash)
+        Carwash.id = id
+        Carwash_da = DataAccess(CarWash)
+        Carwash_da.edit(Carwash)
+        Logger.info(f"Car wash{Carwash}Edited")
+        return True, Carwash
     except Exception as e:
         Logger.error(f"{e}-Not Edited")
         return False, f"{e}"
 
 
-def remove_by_id(id):
+def remove_Car_wash_by_id(id):
     try:
-        carwash_da = DataAccess(CarWash)
-        carwash = carwash_da.remove_by_id(id)
+        da = DataAccess(CarWash)
+        car_wash = da.find_by_id(id)
+        if car_wash is None:
+            return False, f"CarWash with id={id} not found"
 
-        Logger.info(f"Carwash {carwash} Removed")
-        return True, carwash
+        da.remove(car_wash)  # یا session.delete(carwash) اگه مستقیم کار میکنی
+        return True, "Removed"
     except Exception as e:
-        Logger.error(f"{e} - Not Removed")
         return False, f"{e}"
 
 
-def find_all():
+def find_all_Carwash():
     try:
-        carwash_da = DataAccess(CarWash)
-        carwash_list = carwash_da.find_all()
-        Logger.info(f"Carwash FindALL")
-        return True, carwash_list
+        Carwash_da = DataAccess(CarWash)
+        all_Carwash = Carwash_da.find_all()
+        return all_Carwash
     except Exception as e:
-        Logger.error(f"{e} - FindALL")
         return False, f"{e}"
 
 
-def find_by_id(id):
+def find_Carwash_by_id(id):
     try:
-        carwash_da = DataAccess(CarWash)
-        carwash = carwash_da.find_by_id(id)
-        if carwash:
-            Logger.info(f"Carwash FindById {id}")
-            return True, carwash
+        Carwash_da = DataAccess(CarWash)
+        Carwash = Carwash_da.find_by_id(id)
+        if Carwash:
+            return True, Carwash
         else:
-            raise ValueError("No Carwash Found")
-    except Exception as e:
-        Logger.error(f"{e} - FindById {id}")
-        return False, f"{e}"
-
-
-def find_all_carwash():
-    try:
-        carwash_da = DataAccess(CarWash)
-        all_carwash = carwash_da.find_all()
-        return all_carwash
+            raise ValueError("No Car wash Found")
     except Exception as e:
         return False, f"{e}"

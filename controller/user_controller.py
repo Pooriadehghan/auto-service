@@ -40,7 +40,6 @@ def remove_by_id(user_id):
         Logger.error(f"{e} - Not Removed")
         return False, f"{e}"
 
-
 def find_all():
     try:
         user_da = DataAccess(User)

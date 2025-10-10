@@ -67,7 +67,7 @@ def find_by_id(admin_id):
 def find_by_user_name(user_name):
     try:
         admin_da = DataAccess(Admin)
-        user = admin_da.find_by(Admin.username == user_name)
+        user = admin_da.find_by(Admin._username == user_name)
         if user:
             Logger.info(f"Admin FindByUserName {user_name}")
             return True, user

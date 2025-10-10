@@ -2,8 +2,16 @@ from model.entity import *
 from model.tools.validation import *
 
 
-class User(base):
-    __tablename__="user"
+class User(Base):
+    __tablename__ = "user"
+
+    _id = Column("ID", Integer, primary_key=True, autoincrement=True)
+    _name = Column("Name", String(30))
+    _family = Column("family", String(30))
+    _phone_number = Column("phone number", Integer)
+    _address=Column("address", String(30))
+    _department=Column("derpartment", String(30))
+
 
     def __init__(self, name, family, phone_number, address, department):
         self._id = None
@@ -29,7 +37,7 @@ class User(base):
 
     @name.setter
     def name(self, value):
-        self._name = value
+        self._name = name_validator(value, "Invalid name")
 
     # --- family ---
     @property
@@ -38,7 +46,7 @@ class User(base):
 
     @family.setter
     def family(self, value):
-        self._family = value
+        self._family = name_validator(value, "Invalid family")
 
     # --- phone_number ---
     @property
@@ -47,7 +55,7 @@ class User(base):
 
     @phone_number.setter
     def phone_number(self, value):
-        self._phone_number = value
+        self._phone_number = phone_validator(value, "Invalid phone number")
 
     # --- address ---
     @property
@@ -56,7 +64,7 @@ class User(base):
 
     @address.setter
     def address(self, value):
-        self._address = value
+        self._address = address_validator(value, "Invalid address")
 
     # --- department ---
     @property

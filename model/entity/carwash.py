@@ -13,9 +13,9 @@ class CarWash(Base):
 
     def __init__(self, car_id, price, type_wash):
         self.id = None
-        self._Car_id = car_id
-        self._price = price
-        self._type_wash = type_wash
+        self.Car_id = car_id
+        self.price = price
+        self.type_wash = type_wash
 
     @property
     def id(self):

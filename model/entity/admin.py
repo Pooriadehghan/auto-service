@@ -2,7 +2,6 @@ from model.entity import *
 from model.tools.validation import *
 
 
-
 class Admin(Base):
     __tablename__ = 'admin'
 
@@ -11,7 +10,7 @@ class Admin(Base):
     _password = Column("password", String(30))
 
     def __init__(self, username, password):
-        self.id = None
+        self.id=None
         self.username = username
         self.password = password
 
@@ -29,7 +28,7 @@ class Admin(Base):
 
     @username.setter
     def username(self, value):
-        self._user_name = username_validator(value, "Invalid username !!!")
+        self._username = username_validator(value, "Invalid username !!!")
 
     @property
     def password(self):

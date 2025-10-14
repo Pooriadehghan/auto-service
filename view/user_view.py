@@ -8,7 +8,6 @@ from view.component.label_and_entry import *
 class UserView:
     def save_click(self):
         status, data = save(
-            self.role.variable.get(),
             self.name.variable.get(),
             self.family.variable.get(),
             self.phone.variable.get(),

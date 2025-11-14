@@ -25,7 +25,7 @@ def edit(id, name_part, label, price, quantity, salary):
 
     except Exception as e:
         Logger.error(f"{e} - Not Edited")
-        return False, f"{e}"
+        return False, f"{e} - Not Edited"
 
 
 def remove_by_id(id):
@@ -38,3 +38,14 @@ def remove_by_id(id):
     except Exception as e:
         Logger.error(f"{e} - Not Removed")
         return False, f"{e}"
+
+def find_all():
+    try:
+        repair_da=DataAccess(Repair)
+        repair=repair_da.find_all()
+        Logger.info("Repair FindAll")
+        return True,repair
+
+    except Exception as e:
+        Logger.error(f"{e} - FindAll")
+        return False,f"{e}"

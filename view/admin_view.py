@@ -77,4 +77,5 @@ class AdminView:
         self.win.mainloop()
 
 
+
 ui = AdminView("Admin View", "700x400")

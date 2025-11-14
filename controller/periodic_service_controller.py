@@ -40,3 +40,14 @@ def remove_by_id(id):
     except Exception as e:
         Logger.error(f"{e} - Not Removed")
         return False, f"{e}"
+
+def find_all():
+    try:
+        periodic_service_da=DataAccess(PeriodicService)
+        periodic_service=periodic_service_da.find_all()
+        Logger.info("Periodic service FindAll")
+        return True,periodic_service
+
+    except Exception as e:
+        Logger.error(f"{e} - FindAll")
+        return False,f"{e}"

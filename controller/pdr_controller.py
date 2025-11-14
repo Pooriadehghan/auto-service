@@ -1,24 +1,26 @@
 from controller import *
 
-def add(service_description,equipment_used,salary):
+
+def add(car_id, service_description, equipment_used, salary):
     try:
-        pdr=Pdr(service_description,equipment_used,salary)
-        pdr_da=DataAccess(Pdr)
+        pdr = Pdr(car_id, service_description, equipment_used, salary)
+        pdr_da = DataAccess(Pdr)
         pdr_da.save(pdr)
         Logger.info(f"Pdr {pdr} saved")
-        return True,pdr
+        return True, pdr
     except Exception as e:
         Logger.error(f"{e} - Not Saved")
-        return False,f"{e}"
+        return False, f"{e}"
 
-def edit(id,service_description,equipment_used,salary):
+
+def edit(id, car_id, service_description, equipment_used, salary):
     try:
-        pdr=Pdr(service_description,equipment_used, salary)
-        pdr.id=id
-        pdr_da=DataAccess(Pdr)
+        pdr = Pdr(car_id, service_description, equipment_used, salary)
+        pdr.id = id
+        pdr_da = DataAccess(Pdr)
         pdr_da.edit(pdr)
         Logger.info(f"Pdr {pdr} Edited")
-        return True,pdr
+        return True, pdr
     except Exception as e:
         Logger.error(f"{e} - Not Edited")
 
@@ -34,13 +36,14 @@ def remove_by_id(id):
         Logger.error(f"{e} - Not Removed")
         return False, f"{e}"
 
+
 def find_all():
     try:
-        pdr_da=DataAccess(Pdr)
-        pdr=pdr_da.find_all()
+        pdr_da = DataAccess(Pdr)
+        pdr = pdr_da.find_all()
         Logger.info("Pdr FindAll")
-        return True,pdr
+        return True, pdr
 
     except Exception as e:
         Logger.error(f"{e} - FindAll")
-        return False,f"{e}"
+        return False, f"{e}"

@@ -225,3 +225,9 @@ def id_validation(car_id, message):
         return car_id
     else:
         return ValueError(message)
+
+def description_validation(description, message):
+    if type(description) == str and re.match(r'^[A-Za-z0-9 .,()-]{5,50}$', description):
+        return description
+    else:
+        raise ValueError(message)

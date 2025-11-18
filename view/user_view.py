@@ -1,9 +1,5 @@
-from tkinter import *
-import tkinter.messagebox as msg
-from view.component import *
-from controller.user_controller import *
-from view.component.table import *
-from view.component.label_and_entry import *
+from view import *
+
 
 class UserView:
     def save_click(self):

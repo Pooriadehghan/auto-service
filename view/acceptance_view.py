@@ -1,13 +1,4 @@
 from view import *
-from datetime import date
-from tkinter import *
-from model.entity.acceptance import *
-from view.component.table import Table
-from view.component.label_and_entry import LabelAndEntry
-from controller.acceptance_controller import *
-import tkinter.messagebox as msg
-from model.tools.validation import *
-from view.carwash_view import *
 
 
 class AcceptanceView:
@@ -99,7 +90,7 @@ class AcceptanceView:
         self.win.geometry(geometry)
         self.win.title(title)
         Label(self.win, text="Car_Accepted", font=("Arial", 20)).place(x=20, y=10)
-        self.id = LabelAndEntry(self.win, "ID", 20, 80, data_type=int)
+        self.id = LabelAndEntry(self.win, "ID", 20, 80, data_type=int,state="readonly")
         self.car_name = LabelAndEntry(self.win, "Car Name", 20, 110, data_type=str)
         self.car_model = LabelAndEntry(self.win, "Car Model", 20, 140, data_type=str)
         self.car_year = LabelAndEntry(self.win, "Car Year", 20, 170, data_type=int)

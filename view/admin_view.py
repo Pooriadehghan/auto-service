@@ -1,8 +1,4 @@
-from tkinter import *
-import tkinter.messagebox as msg
-from view.component.label_and_entry import LabelAndEntry
-from view.component.table import Table
-from controller.admin_controller import *
+from view import *
 
 
 class AdminView:
@@ -55,7 +51,7 @@ class AdminView:
         self.win.title(title)
         self.win.geometry(geometry)
         Label(self.win, text="Admin", font=("Arial", 20)).place(x=10, y=10)
-        self.id = LabelAndEntry(self.win, "ID", 20, 50, data_type="int")
+        self.id = LabelAndEntry(self.win, "ID", 20, 50, data_type="int",state="readonly")
         self.username = LabelAndEntry(self.win, "Username", 20, 90)
         self.password = LabelAndEntry(self.win, "Password", 20, 130)
 

@@ -1,13 +1,7 @@
 from view import *
-from datetime import date
-from tkinter import *
-from model.entity.carwash import *
 from view.component.table import Table
 from view.component.label_and_entry import LabelAndEntry
-from controller.carwash_controller import *
-import tkinter.messagebox as msg
-from model.tools.validation import *
-
+from tkinter import *
 
 class CarWashView:
     def save_click(self):
@@ -62,12 +56,12 @@ class CarWashView:
         else:
             self.table.refresh_table([])
 
-    def __init__(self, title, geometry):
+    def __init__(self, title, geometry,open_invoice_command=None):
         self.win = Tk()
         self.win.geometry(geometry)
         self.win.title(title)
         Label(self.win, text="CarWash", font=("Arial", 20)).place(x=20, y=10)
-        self.id = LabelAndEntry(self.win, "ID", 20, 80, data_type="int")
+        self.id = LabelAndEntry(self.win, "ID", 20, 80, data_type="int",state="readonly")
         self.car_id = LabelAndEntry(self.win, "Car ID", 20, 110, data_type="int")
         self.price = LabelAndEntry(self.win, "PRICE", 20, 140, data_type="str")
         self.type_wash_var = StringVar(value="IN")
@@ -84,6 +78,9 @@ class CarWashView:
         Button(self.win, text="Edit", width=7, command=self.edit_click).place(x=90, y=300)
         Button(self.win, text="Remove", width=7, command=self.remove_click).place(x=160, y=300)
         Button(self.win, text="Show car", width=7, command=self.show_car_wash).place(x=90, y=330)
+
+        self.open_invoice = Button(self.win, text="Open Invoice", width=10, command=lambda: open_invoice_command(self))
+        self.open_invoice.place(x=160, y=330)
 
         self.win.mainloop()
 

@@ -105,3 +105,6 @@ def find_all_acceptance():
         return all_acceptance
     except Exception as e:
         return False, f"{e}"
+
+
+

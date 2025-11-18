@@ -1,8 +1,17 @@
 from datetime import date
 from tkinter import *
-
-from view.component.table import Table
-from view.component.label_and_entry import LabelAndEntry
-# from controller.acceptance_controller import *
 import tkinter.messagebox as msg
 from model.tools.validation import *
+from model.entity.carwash import *
+from model.entity.pdr import *
+from model.entity.acceptance import *
+from controller.carwash_controller import *
+from controller.admin_controller import *
+from controller.periodic_service_controller import *
+from controller.repair_controller import *
+from controller.user_controller import *
+from controller.acceptance_controller import *
+from controller.pdr_controller import *
+from view.carwash_view import *
+from view.component.table import Table
+from view.component.label_and_entry import LabelAndEntry

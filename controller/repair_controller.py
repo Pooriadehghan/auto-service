@@ -39,13 +39,26 @@ def remove_by_id(id):
         Logger.error(f"{e} - Not Removed")
         return False, f"{e}"
 
-def find_all():
+
+def find_all_repair():
     try:
-        repair_da=DataAccess(Repair)
-        repair=repair_da.find_all()
+        repair_da = DataAccess(Repair)
+        repair = repair_da.find_all()
         Logger.info("Repair FindAll")
-        return True,repair
+        return repair
 
     except Exception as e:
         Logger.error(f"{e} - FindAll")
-        return False,f"{e}"
+        return False, f"{e}"
+
+
+def find_all():
+    try:
+        repair_da = DataAccess(Repair)
+        repair = repair_da.find_all()
+        Logger.info("Repair FindAll")
+        return repair
+
+    except Exception as e:
+        Logger.error(f"{e} - FindAll")
+        return False, f"{e}"

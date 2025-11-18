@@ -1,5 +1,4 @@
 from controller import *
-from model.entity.carwash import CarWash
 
 
 def save_Carwash(car_id, price, type_wash):

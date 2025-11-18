@@ -1,7 +1,7 @@
 from controller import *
 
 
-def add(car_id, service_description, equipment_used, salary):
+def save_pdr(car_id, service_description, equipment_used, salary):
     try:
         pdr = Pdr(car_id, service_description, equipment_used, salary)
         pdr_da = DataAccess(Pdr)
@@ -13,7 +13,7 @@ def add(car_id, service_description, equipment_used, salary):
         return False, f"{e}"
 
 
-def edit(id, car_id, service_description, equipment_used, salary):
+def edit_pdr(id, car_id, service_description, equipment_used, salary):
     try:
         pdr = Pdr(car_id, service_description, equipment_used, salary)
         pdr.id = id
@@ -25,7 +25,7 @@ def edit(id, car_id, service_description, equipment_used, salary):
         Logger.error(f"{e} - Not Edited")
 
 
-def remove_by_id(id):
+def remove_pdr_by_id(id):
     try:
         pdr_da = DataAccess(Pdr)
         pdr = pdr_da.remove_by_id(id)
@@ -34,6 +34,18 @@ def remove_by_id(id):
 
     except Exception as e:
         Logger.error(f"{e} - Not Removed")
+        return False, f"{e}"
+
+
+def find_all_pdr():
+    try:
+        pdr_da = DataAccess(Pdr)
+        pdr = pdr_da.find_all()
+        Logger.info("Pdr FindAll")
+        return True, pdr
+
+    except Exception as e:
+        Logger.error(f"{e} - FindAll")
         return False, f"{e}"
 
 
